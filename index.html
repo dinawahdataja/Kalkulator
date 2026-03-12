@@ -1,0 +1,149 @@
+
+
+
+<html>
+    <head>
+        <meta charset="UTF-8"> <!-- Menentukan karakter encoding untuk dokumen HTML simbol2 cantik -->
+        <title>PROGRAM KALKULATOR - DINA</title>
+    <style>
+        body {
+            background-color: #f5f5dc;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            height: 100vh;
+            margin: 0;
+        }
+        .kalkulator-container {
+            background-color: #fdfaf0;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        h2 {
+            color: #3d5a80;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 10px;
+             border: none;
+        }
+
+
+        #layar {
+            width: 100%;
+            height:80px;
+            background-color: #f7cbd9;
+            border: none;
+            border-radius: 12px;
+            font-size:28px;
+            font-weight: bold;
+            color: #3d5a80;
+            padding:  10px 15px;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #3d5a80;
+            background-color: #d1e7e0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        #btnEquals {
+            background-color: #c4d7ed;
+        }
+        button:active {
+            transform: scale(0.92);
+            filter: brightness(0.9)
+        }
+        button:hover {
+            filter: brightness(1.05);
+        }
+        
+    </style>
+    </head>
+
+    <body><center>
+        <div class="kalkulator-container">
+        <h2>CALCULATOR</h2>
+
+        <table border="0">
+            <tr>
+                <td colspan="4"><input id="layar" readonly placeholder="0"></td>
+            </tr>
+            <tr>
+                <td><button onclick="clearLayar();">C</button></td>
+                <td><button onclick="tekanAngka('(');">(</button></td>
+                <td><button onclick="tekanAngka(')');">)</button></td>
+                <td><button onclick="tekanAngka(':');">:</button></td>
+            </tr>
+            <tr>
+                <td><button id="btn1" onclick="tekanAngka('1');">1</button></td>
+                <td><button id="btn2" onclick="tekanAngka('2');">2</button></td>
+                <td><button id="btn3" onclick="tekanAngka('3');">3</button></td>
+                <td><button id="btnPlus" onclick="tekanAngka('+');">+</button></td>
+            </tr>
+            <tr>
+                <td><button id="btn4" onclick="tekanAngka('4');">4</button></td>
+                <td><button id="btn5" onclick="tekanAngka('5');">5</button></td>
+                <td><button id="btn6" onclick="tekanAngka('6');">6</button></td>
+                <td><button id="btnMinus" onclick="tekanAngka('-');">-</button></td>
+            </tr>
+            <tr>
+                <td><button id="btn7" onclick="tekanAngka('7');">7</button></td>
+                <td><button id="btn8" onclick="tekanAngka('8');">8</button></td>
+                <td><button id="btn9" onclick="tekanAngka('9');">9</button></td>
+                <td><button id="btnTimes" onclick="tekanAngka('x');">x</button></td>
+            </tr>
+            <tr>
+               <td><button onclick="tekanAngka('0');">0</button></td>
+                <td><button onclick="tekanAngka('.');">.</button></td>
+                <td><button onclick="hapusSatu();">&#9003;</button></td>
+                <td><button id="btnEquals" onclick="hitung();">=</button></td>
+            </tr>
+        </center>
+        </table>
+    </div>
+
+
+        <script>
+            function tekanAngka(angka) {
+             document.getElementById("layar").value +=angka;
+            }
+            function clearLayar() {
+             document.getElementById("layar").value = "";
+            }
+            function hapusSatu() {
+            let v = document.getElementById("layar").value;
+            document.getElementById("layar").value = v.substring(0, v.length - 1) || "0";
+         }
+            function hitung() {
+             try {
+                // eval menghitung string, replace 'x' dengan '*' agar tidak error
+                let res = eval(document.getElementById("layar").value
+                .replace(/x/g, '*')
+                .replace(/:/g, '/'));
+                document.getElementById("layar").value = res;
+            } 
+            catch (e) {
+                document.getElementById("layar").value = "Error";
+            }
+            }
+        </script>
+    </body>
+</html>
+
